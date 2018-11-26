@@ -3,7 +3,7 @@
 This is a sample app that demonstrates how to do face detection and recognition
 
 ## Requirements
-To be able to install the npm packages listed in the `package.json` depenceies you need to install the following first:
+To be able to install the npm packages listed in the `package.json` dependencies you need to install the following first:
 - cmake
 - libx11 or XQuartz for the dlib GUI
 - libpng for reading images
@@ -53,7 +53,7 @@ To train the recognizer model with faces and recognize faces on a provided pictu
 > yarn faces:recognize name:path/to/faces [ name:path/to/more/faces ] path/to/image/to/recognize.jpg
 
 ```
-To train the model with people to recognize each training pair argument `name:/path/to/faces` contains persons name _(before `:` colon)_ and path to the folder containing the face images _(after the `:` colon)_. For example to use some sample faces included in this project `bpitt:faces-to-train/bpitt`. You can supply 1 or more training pairs.
+To train the model with people to recognize, each training pair argument `name:/path/to/faces` contains person's name _(before `:` colon)_ and path to the folder containing the face images _(after the `:` colon)_. For example, to use some sample faces included in `./faces-to-train` you can use a training pair `bpitt:faces-to-train/bpitt`. You can supply 1 or more training pairs.
 ```
 // or with npm using training pictures incuded in /faces-to-train folder
 // and a sample picture included in /photos folder
