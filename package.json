@@ -1,0 +1,15 @@
+{
+  "description": "Face Detection & Recognition",
+  "engines": {
+    "node": "~10.13.0"
+  },
+  "dependencies": {
+    "bluebird": "^3.5.2",
+    "face-recognition": "^0.9.3",
+    "gm": "^1.23.1"
+  },
+  "scripts": {
+    "faces:detect": "node src/detect-faces.js",
+    "faces:recognize": "node src/recognize-faces.js"
+  }
+}
