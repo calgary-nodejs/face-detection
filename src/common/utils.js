@@ -15,6 +15,18 @@ exports.drawRectangle = (file, { top, left, bottom, right }) => {
     .drawRectangle(left, top, right, bottom)
 };
 
+exports.drawRectangleWithText = (file, { top, left, bottom, right }, text) => {
+  const font = './fonts/roboto/Roboto-Light.ttf';
+  const fontSize = 25;
+
+  file
+    .stroke('#00FF00', 2)
+    .fill('none')
+    .drawRectangle(left, top, right, bottom)
+    .strokeWidth(1)
+    .font(font, fontSize)
+    .drawText(left, bottom + fontSize + 10, text)
+};
 
 const getExtension = (file) => path.extname(file).substr(1).toLowerCase();
 

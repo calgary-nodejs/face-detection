@@ -13,6 +13,15 @@ exports.train = (recognizer, personName, faceImagesPath) =>
   })
   .catch(err => console.log(`> ... Failed training images from ${faceImagesPath}`));
 
+exports.trainPairsConcurrently = (recognizer, trainingPairs) =>
+      Promise
+      .map(trainingPairs, pair => pair.split(':'))
+      .map(([ personName, faceImagesPath ]) => {
+        if (!personName || !faceImagesPath) { return; }
+        console.log(`> ... Training faces of ${personName}`);
+        return this.train(recognizer, personName, faceImagesPath);
+      });
+
 exports.saveState = async (recognizer, saveToFilePath) => {
   await createPathIfNotExists(path.dirname(saveToFilePath));
   const recognizerState = JSON.stringify(recognizer.serialize());
@@ -27,3 +36,18 @@ exports.recognizeFaces = (faceRecognizer, facesToRecognize) =>
     console.log(`> ... Recognized ${className} (${distance})`);
   })
   .catch(err => console.log('> ... Predicting failed: ', err));
+
+exports.predictFaces = async (faceRecognizer, facesToRecognize) => {
+  try {
+    const predictedNames = await facesToRecognize.map(async (face) => {
+      const prediction = await faceRecognizer.predictBest(face);
+      const { className, distance } = prediction;
+      console.log(`> ... Recognized ${className} (${distance})`);
+      return prediction;
+    });
+    return await predictedNames;
+
+  } catch(err) {
+    console.log('> ... Predicting failed: ', err);
+  }
+}

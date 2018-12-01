@@ -3,18 +3,9 @@
 const path = require('path');
 const Promise = require('bluebird');
 const fr = require('face-recognition');
-const { recognizeFaces, saveState, train } = require('./common/recognizer');
+const { recognizeFaces, saveState, trainPairsConcurrently } = require('./common/recognizer');
 const { detectFaces } = require('./common/detector');
 const { printValidationErrorMessage } = require('./common/utils');
-
-const trainPairsConcurrently = (recognizer, trainingPairs) =>
-      Promise
-      .map(trainingPairs, pair => pair.split(':'))
-      .map(([ personName, faceImagesPath ]) => {
-        if (!personName || !faceImagesPath) { return; }
-        console.log(`> ... Training faces of ${personName}`);
-        return train(recognizer, personName, faceImagesPath);
-      });
 
 const main = async (trainingPairs, imageToRecognizeFaces) => {
   try {

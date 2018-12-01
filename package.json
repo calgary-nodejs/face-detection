@@ -10,6 +10,7 @@
   },
   "scripts": {
     "faces:detect": "node src/detect-faces.js",
-    "faces:recognize": "node src/recognize-faces.js"
+    "faces:recognize": "node src/recognize-faces.js",
+    "faces:recognize:locate": "node src/locate-faces.js"
   }
 }
